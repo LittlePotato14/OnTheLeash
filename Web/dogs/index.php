@@ -3,7 +3,7 @@ require("../general_files/config.php");
 
 switch ($_SERVER['REQUEST_METHOD']) {
     case 'POST':
-        require("registration.php");
+        require("create.php");
         break;
 	case 'DELETE':
 		require("delete.php");

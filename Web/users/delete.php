@@ -18,11 +18,11 @@ defined('APP_RAN') or die();
 
 // check jwt
 $jwt_check = checkJwt($link);
-$jwt_payload = checkJwt["jwt_payload"];
+$jwt_payload = $jwt_check["jwt_payload"];
 
 // delete user
 // preparing db request
-$stmt = mysqli_prepare($link, "DELETE FROM users WHERE user_id = ?");
+$stmt = mysqli_prepare($link, "DELETE FROM users WHERE id = ?");
 mysqli_stmt_bind_param($stmt, 'd', $jwt_payload["user_id"]);
 
 // executing db request

@@ -19,7 +19,7 @@ $jwt_check = checkJwt($link);
 $jwt_payload = $jwt_check["jwt_payload"];
 
 // removing key
-unset($jwt_check["keys_from_db"][array_search($jwt_check["key_found"], $jwt_check["$keys_from_db"])]);
+unset($jwt_check["keys_from_db"][array_search($jwt_check["key_found"], $jwt_check["keys_from_db"])]);
 
 // preparing db request
 $stmt = mysqli_prepare($link, "UPDATE users SET users.keys = ? WHERE id = ?");

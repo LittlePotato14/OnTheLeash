@@ -1,10 +1,11 @@
 URL                                      DESCRIPTION                                      REQUERS JWT TOKEN
 
 POST users/                              user registration                                No
-GET users/:id                            user info                                        No
+GET users?:id/                           @id user info                                    No
+GET users/                               user info                                        Yes
 PUT users/                               update user info                                 Yes
 DELETE users/                            delete user                                      Yes
-PUT users/new_password                   update user info                                 No
+PUT users/new_password                   send new password via email                      No
 
 POST sessions/                           user login                                       No
 DELETE sessions/                         user logout                                      Yes
@@ -14,6 +15,6 @@ PUT confirmation_code/                   confirm account                        
 POST confirmation_code/                  resends confirmation code                        Yes
 
 POST dogs/                               dog creation                                     Yes
-GET dogs/:id                             get dog info                                     No
-PUT dogs/:id                             update dog info                                  Yes
-DELETE dogs/:id                          delete dog                                       Yes
+GET dogs?:id/                            get dog info                                     No
+PUT dogs?:id/                            update dog info                                  Yes
+DELETE dogs?:id/                         delete dog                                       Yes

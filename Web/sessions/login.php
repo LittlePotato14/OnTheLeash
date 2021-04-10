@@ -3,7 +3,7 @@
 // Body json {email: string, password: string}
 //
 // RETURN:
-// json {jwt: string]);
+// json {jwt: string}
 //
 // ERRORS:
 // 400:

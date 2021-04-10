@@ -3,7 +3,7 @@
 // Body json {email: string, password: string}
 //
 // RETURN:
-// json {jwt: string]);
+// json {jwt: string}
 //
 // ERRORS:
 // 400:
@@ -105,7 +105,7 @@ $new_user_id = mysqli_insert_id($link);
 // closing statement
 mysqli_stmt_close ($stmt);
 
-// udate username and name
+// update username and name
 // preparing db request
 $stmt = mysqli_prepare($link, "UPDATE users SET username = ?, name = ? WHERE id = ?");
 $new_username = "user" . $new_user_id;

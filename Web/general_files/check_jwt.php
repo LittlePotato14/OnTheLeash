@@ -69,6 +69,6 @@ function checkJwt($link, $active=true) {
 		exit();
 	}
 	
-	return ["jwt_payload"=>$jwt_payload, "key_found"=>$key_found, "keys_from_db"->keys_from_db];
+	return ["jwt_payload"=>$jwt_payload, "key_found"=>$key_found, "keys_from_db"=>$keys_from_db];
 }
 ?>
