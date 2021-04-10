@@ -2,6 +2,7 @@ package com.example.ontheleash.api;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -11,6 +12,11 @@ public interface OnTheLeashApi {
     @POST("sessions/")
     Call<JwtResponse> login(
             @Body RegistrationLoginRequest registrationLoginRequest
+    );
+
+    @DELETE("sessions/")
+    Call<Void> logout(
+            @Header("jwt") String jwt
     );
 
     @POST("users/")

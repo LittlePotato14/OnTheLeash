@@ -63,7 +63,9 @@ public class SignUpActivity extends AppCompatActivity {
         // open log in activity
         textLogin.setOnClickListener(v -> {
             Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            finish();
         });
 
         // open confirmation code activity
@@ -73,12 +75,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         // get back to the main activity
-        back.setOnClickListener(v -> {
-            Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
-        });
+        back.setOnClickListener(v -> onBackPressed());
 
         // send registration request
         signUp.setOnClickListener(v -> apiSignUp());
@@ -159,7 +156,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         if(!Pattern.matches(Settings.PASSWORD_PATTERN, password)){
-            passwordInput.setError("Wrong password format");
+            passwordInput.setError("Weak password");
             return false;
         }
 

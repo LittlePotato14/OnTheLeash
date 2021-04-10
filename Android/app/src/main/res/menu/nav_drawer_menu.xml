@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/map"
+        android:title="Map"
+        android:icon="@drawable/map_icon_green" />
+
+    <item
+        android:id="@+id/events"
+        android:title="Events"
+        android:icon="@drawable/event_icon_green"
+        android:visible="false"/>
+
+    <item
+        android:id="@+id/messages"
+        android:title="Messages"
+        android:icon="@drawable/message_icon_green"/>
+
+    <item
+        android:title="Account">
+
+        <menu>
+
+            <item
+                android:id="@+id/profile"
+                android:title="Profile"
+                android:icon="@drawable/profile_icon_green" />
+
+            <item
+                android:id="@+id/settings"
+                android:title="Settings"
+                android:icon="@drawable/settings_icon_green"/>
+
+        </menu>
+
+    </item>
+
+    <item
+        android:title="Contacts">
+
+        <menu>
+
+            <item
+                android:id="@+id/support"
+                android:title="Support"
+                android:icon="@drawable/support_icon_green"/>
+
+            <item
+                android:id="@+id/share"
+                android:title="Share"
+                android:icon="@drawable/share_icon_green"
+                android:visible="false"/>
+
+            <item
+                android:id="@+id/rate"
+                android:title="Rate us"
+                android:icon="@drawable/rate_icon_green"
+                android:visible="false"/>
+
+        </menu>
+
+    </item>
+</menu>

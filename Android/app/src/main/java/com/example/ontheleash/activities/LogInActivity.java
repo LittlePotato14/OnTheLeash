@@ -55,11 +55,13 @@ public class LogInActivity extends AppCompatActivity {
         // open sign up activity
         textSignUp.setOnClickListener(v -> {
             Intent intent = new Intent(LogInActivity.this, SignUpActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            finish();
         });
 
         // get back to the main activity
-        back.setOnClickListener(v -> openMainActivity());
+        back.setOnClickListener(v -> onBackPressed());
     }
 
     private void openMainActivity(){
@@ -75,6 +77,16 @@ public class LogInActivity extends AppCompatActivity {
 
         emailInput.setError(null);
         passwordInput.setError(null);
+
+        if(email.isEmpty()){
+            emailInput.setError("Input email address");
+            return;
+        }
+
+        if(password.isEmpty()){
+            passwordInput.setError("Input password");
+            return;
+        }
 
         // send login request
         ApiClient.getInstance()
