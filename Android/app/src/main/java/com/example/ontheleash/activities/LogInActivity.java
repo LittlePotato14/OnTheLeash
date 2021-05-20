@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.ontheleash.R;
 import com.example.ontheleash.Settings;
 import com.example.ontheleash.api.ApiClient;
-import com.example.ontheleash.api.RegistrationLoginRequest;
+import com.example.ontheleash.api.Credentials;
 import com.example.ontheleash.api.JwtResponse;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -91,7 +91,7 @@ public class LogInActivity extends AppCompatActivity {
         // send login request
         ApiClient.getInstance()
                 .getApi()
-                .login(new RegistrationLoginRequest(email, password))
+                .login(new Credentials(email, password))
                 .enqueue(new Callback<JwtResponse>() {
                     @Override
                     public void onResponse(@NonNull Call<JwtResponse> call, @NonNull Response<JwtResponse> response) {

@@ -8,6 +8,7 @@ public class Settings {
     public static final String APP_PREFERENCES_FIRST_IN = "firstInApp";
     // if user already pass registration and has to input confirmation code
     public static final String APP_PREFERENCES_CODE_STAGE = "code";
+    public static final String APP_PREFERENCES_MAP_SETTINGS_JSON = "mapSettings";
 
     // Patterns
     public static final String EMAIL_PATTERN = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+[.][a-zA-Z0-9-.]+$";

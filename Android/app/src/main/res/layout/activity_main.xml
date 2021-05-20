@@ -7,119 +7,110 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".activities.LogInActivity">
+    tools:context=".activities.MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.13" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.83" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.1" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.9" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.07" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/primary_green"
-            app:layout_constraintBottom_toTopOf="@+id/guideline6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:orientation="horizontal" />
+            android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/menuButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:src="@drawable/menu_icon_white"
-            app:layout_constraintBottom_toTopOf="@+id/guideline6"
-            app:layout_constraintEnd_toStartOf="@+id/guideline4"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.1" />
 
-        <ImageButton
-            android:id="@+id/topButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:visibility="invisible"
-            android:src="@drawable/menu_icon_white"
-            app:layout_constraintBottom_toTopOf="@+id/guideline6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline5"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.9" />
 
-        <!--com.google.android.material.button.MaterialButton
-            android:id="@+id/login"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="30dp"
-            android:text="Log in"
-            android:textAllCaps="false"
-            app:cornerRadius="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/signUp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline5"
-            app:layout_constraintStart_toStartOf="@+id/guideline4" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.07" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/signUp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Sign up"
-            android:textAllCaps="false"
-            app:cornerRadius="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3"
-            app:layout_constraintEnd_toStartOf="@+id/guideline5"
-            app:layout_constraintStart_toStartOf="@+id/guideline4" /-->
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/primary_green"
+                app:layout_constraintBottom_toTopOf="@+id/guideline6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="horizontal" />
 
-        <fragment
-            android:id="@+id/navHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/main"/>
+            <ImageButton
+                android:id="@+id/menuButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:src="@drawable/menu_icon_white"
+                app:layout_constraintBottom_toTopOf="@+id/guideline6"
+                app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <SearchView
+                android:id="@+id/search"
+                android:paddingHorizontal="-10dp"
+                android:paddingVertical="2dp"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                app:theme="@style/AppSearchView"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/bg_rounded_searchview"
+                android:queryBackground="@null"
+                android:iconifiedByDefault="false"
+                android:queryHint="Search here"
+                app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+                app:layout_constraintEnd_toStartOf="@+id/topButton"
+                app:layout_constraintStart_toEndOf="@+id/menuButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageButton
+                android:id="@+id/topButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                android:src="@drawable/menu_icon_white"
+                app:layout_constraintBottom_toTopOf="@+id/guideline6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline5"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <fragment
+                android:id="@+id/navHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/main"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include layout="@layout/bottom_sheet_dog_layout"/>
+        <include layout="@layout/bottom_sheet_places_layout"/>
+        <include layout="@layout/bottom_sheet_parks_layout"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navView"

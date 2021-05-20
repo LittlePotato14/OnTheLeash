@@ -15,7 +15,8 @@
     <item
         android:id="@+id/messages"
         android:title="Messages"
-        android:icon="@drawable/message_icon_green"/>
+        android:icon="@drawable/message_icon_green"
+        android:visible="false"/>
 
     <item
         android:title="Account">
@@ -30,6 +31,7 @@
             <item
                 android:id="@+id/settings"
                 android:title="Settings"
+                android:visible="false"
                 android:icon="@drawable/settings_icon_green"/>
 
         </menu>
@@ -44,6 +46,7 @@
             <item
                 android:id="@+id/support"
                 android:title="Support"
+                android:visible="false"
                 android:icon="@drawable/support_icon_green"/>
 
             <item

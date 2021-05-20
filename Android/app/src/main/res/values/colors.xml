@@ -13,4 +13,5 @@
     <color name="on_background">#ECF4FA</color>
     <color name="dark_gray">#666666</color>
     <color name="light_gray">#999999</color>
+    <color name="danger_red">#D3352D</color>
 </resources>

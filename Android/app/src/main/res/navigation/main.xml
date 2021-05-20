@@ -10,7 +10,11 @@
         android:id="@+id/map"
         android:name="com.example.ontheleash.Fragments.MapFragment"
         android:label="Map"
-        tools:layout="@layout/fragment_map" />
+        tools:layout="@layout/fragment_map">
+
+        <action android:id="@+id/action_map_to_profile"
+            app:destination="@id/profile"/>
+    </fragment>
     <fragment
         android:id="@+id/messages"
         android:name="com.example.ontheleash.Fragments.MessagesFragment"
@@ -31,9 +35,5 @@
         android:name="com.example.ontheleash.Fragments.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings" />
-    <fragment
-        android:id="@+id/support"
-        android:name="com.example.ontheleash.Fragments.SupportFragment"
-        android:label="Support"
-        tools:layout="@layout/fragment_support" />
+
 </navigation>

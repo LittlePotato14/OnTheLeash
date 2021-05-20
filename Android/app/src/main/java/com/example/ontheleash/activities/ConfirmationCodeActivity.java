@@ -35,12 +35,14 @@ public class ConfirmationCodeActivity extends AppCompatActivity {
 
     private TextView resendCode, nextResend;
 
-    EditText code1;
-    EditText code2;
-    EditText code3;
-    EditText code4;
+    private EditText code1;
+    private EditText code2;
+    private EditText code3;
+    private EditText code4;
 
-    Timer resendTimer;
+    private Timer resendTimer;
+
+    private String jwt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,25 +50,30 @@ public class ConfirmationCodeActivity extends AppCompatActivity {
         setTheme(R.style.Theme_OnTheLeash);
         setContentView(R.layout.activity_confirmation_code);
 
+        // getting jwt token
+        SharedPreferences mSettings;
+        mSettings = getSharedPreferences(Settings.APP_PREFERENCES, Context.MODE_PRIVATE);
+        jwt = mSettings.getString(Settings.APP_PREFERENCES_TOKEN, "");
+
         resendCode = findViewById(R.id.resendCode);
         nextResend = findViewById(R.id.nextResend);
-
-        resendTimer = new Timer();
-        setTimer();
-
         Button confirm = findViewById(R.id.confirm);
         ImageButton back = findViewById(R.id.backButton);
-
-        confirm.setOnClickListener(v -> apiConfirm());
-        resendCode.setOnClickListener(v -> apiResend());
-        resendCode.setEnabled(false);
-
-        back.setOnClickListener(v -> onBackPressed());
-
         code1 = findViewById(R.id.code1);
         code2 = findViewById(R.id.code2);
         code3 = findViewById(R.id.code3);
         code4 = findViewById(R.id.code4);
+
+        // timer for code resending
+        resendTimer = new Timer();
+        setTimer();
+
+        // check confirmation code
+        confirm.setOnClickListener(v -> apiConfirm());
+        // resend code
+        resendCode.setOnClickListener(v -> apiResend());
+        // back to registration
+        back.setOnClickListener(v -> onBackPressed());
 
         // For switching to the next
         code1.addTextChangedListener(new GenericTextWatcher(code2));
@@ -87,7 +94,14 @@ public class ConfirmationCodeActivity extends AppCompatActivity {
         code4.setOnFocusChangeListener(new GenericOnFocus());
     }
 
+    /**
+     * Sets timer on 10 seconds, after 10 sec makes resend code button visible and enabled
+     */
     private void setTimer(){
+        resendCode.setEnabled(false);
+        resendCode.setTextColor(ContextCompat.getColor(this, R.color.light_gray));
+        nextResend.setVisibility(View.VISIBLE);
+
         resendTimer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -104,21 +118,22 @@ public class ConfirmationCodeActivity extends AppCompatActivity {
         }, 10000);
     }
 
+    /**
+     * Send confirmation request
+     */
     private void apiConfirm(){
         String a1 = code1.getText().toString(),
                 a2 = code2.getText().toString(),
                 a3 = code3.getText().toString(),
                 a4 = code4.getText().toString();
 
+        // check if code was typed in
         if(a1.isEmpty() || a2.isEmpty() || a3.isEmpty() || a4.isEmpty()){
             Toast.makeText(ConfirmationCodeActivity.this, "Please, input code", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        SharedPreferences mSettings;
-        mSettings = getSharedPreferences(Settings.APP_PREFERENCES, Context.MODE_PRIVATE);
-        String jwt = mSettings.getString(Settings.APP_PREFERENCES_TOKEN, "");
-
+        // sending request
         ApiClient.getInstance()
                 .getApi()
                 .confirm(jwt, new ConfirmationRequest(a1 + a2 + a3 + a4))
@@ -126,10 +141,11 @@ public class ConfirmationCodeActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(@NonNull Call<JwtResponse> call, @NonNull Response<JwtResponse> response) {
                         if(response.isSuccessful()) {
+                            // getting active jwt
                             String jwt = response.body().getJwt();
                             System.out.println(jwt);
 
-                            // save jwt
+                            // save jwt and logged in status
                             SharedPreferences mSettings;
                             mSettings = getSharedPreferences(Settings.APP_PREFERENCES, Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = mSettings.edit();
@@ -175,22 +191,13 @@ public class ConfirmationCodeActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Send request to resend confirmation code
+     */
     private void apiResend(){
-        // set timer back
-        resendCode.setEnabled(false);
-        resendCode.setTextColor(ContextCompat.getColor(this, R.color.light_gray));
-        nextResend.setVisibility(View.VISIBLE);
         setTimer();
 
-        code1.setEnabled(true);
-        code2.setEnabled(true);
-        code3.setEnabled(true);
-        code4.setEnabled(true);
-
-        SharedPreferences mSettings;
-        mSettings = getSharedPreferences(Settings.APP_PREFERENCES, Context.MODE_PRIVATE);
-        String jwt = mSettings.getString(Settings.APP_PREFERENCES_TOKEN, "");
-
+        // send request
         ApiClient.getInstance()
                 .getApi()
                 .newCode(jwt)
@@ -199,6 +206,12 @@ public class ConfirmationCodeActivity extends AppCompatActivity {
                     public void onResponse(@NonNull Call<Void> call, @NonNull Response<Void> response) {
                         if(response.isSuccessful()) {
                             Toast.makeText(ConfirmationCodeActivity.this, "A new code was sent", Toast.LENGTH_SHORT).show();
+
+                            // we made them disabled when out of attempt
+                            code1.setEnabled(true);
+                            code2.setEnabled(true);
+                            code3.setEnabled(true);
+                            code4.setEnabled(true);
                         }
                         else{
                             switch (response.code()) {

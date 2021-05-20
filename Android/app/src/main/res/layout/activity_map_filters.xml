@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".activities.MapFiltersActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.02"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.09"/>
+
+    <ImageButton
+        android:padding="5dp"
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/back_icon_green"
+        android:background="@null"
+        app:layout_constraintBottom_toTopOf="@+id/guideline7"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="Map settings"
+        android:textColor="@color/primary_green"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline6" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:paddingTop="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline7">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="40dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Map style"
+                android:textColor="@color/primary_green"
+                android:textSize="16sp" />
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/normal"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingStart="-10dp"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
+                    android:text="normal"
+                    android:textColor="@color/dark_gray" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/satellite"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingStart="-10dp"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
+                    android:text="satellite"
+                    android:textColor="@color/dark_gray" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/hybrid"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingStart="-10dp"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
+                    android:text="hybrid"
+                    android:textColor="@color/dark_gray" />
+
+            </RadioGroup>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="0dp"
+                android:background="@color/dark_gray" />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:columnCount="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center|start"
+                    android:text="Marker filters"
+                    android:textColor="@color/primary_green"
+                    android:textSize="16sp" />
+
+                <ImageButton
+                    android:id="@+id/expand_filters_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:adjustViewBounds="true"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/down_icon_green" />
+
+            </GridLayout>
+
+            <GridLayout
+                android:id="@+id/expandable_marker_filters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:columnCount="3"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:adjustViewBounds="true"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/dog_marker_orange" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:paddingLeft="10dp"
+                    android:text="Dogs"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="16sp" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/dogs"
+                    android:theme="@style/orangeCheckBoxStyle" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:adjustViewBounds="true"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/park_marker_orange" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:paddingLeft="10dp"
+                    android:text="Dog parks"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="16sp" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/dog_parks"
+                    android:theme="@style/orangeCheckBoxStyle" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:adjustViewBounds="true"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/dog_friendly_marker_orange" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:paddingLeft="10dp"
+                    android:text="Dog-friendly places"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="16sp" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/dog_friendly"
+                    android:theme="@style/orangeCheckBoxStyle" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:adjustViewBounds="true"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/hospital_marker_orange" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:paddingLeft="10dp"
+                    android:text="Animal hospitals"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="16sp" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/hospitals"
+                    android:theme="@style/orangeCheckBoxStyle" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:adjustViewBounds="true"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/shelter_marker_orange" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:paddingLeft="10dp"
+                    android:text="Shelters"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="16sp" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/shelters"
+                    android:theme="@style/orangeCheckBoxStyle" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:adjustViewBounds="true"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/store_marker_orange" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:paddingLeft="10dp"
+                    android:text="Pet stores"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="16sp" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/stores"
+                    android:theme="@style/orangeCheckBoxStyle" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:adjustViewBounds="true"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/hotel_marker_orange" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:paddingLeft="10dp"
+                    android:text="Dog hotels"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="16sp" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/hotels"
+                    android:theme="@style/orangeCheckBoxStyle" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:adjustViewBounds="true"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/dog_training_marker_orange" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:paddingLeft="10dp"
+                    android:text="Dog training clubs"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="16sp" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/clubs"
+                    android:theme="@style/orangeCheckBoxStyle" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:adjustViewBounds="true"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/breeding_marker_orange" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:paddingLeft="10dp"
+                    android:text="Dog-breeding"
+                    android:textColor="@color/dark_gray"
+                    android:textSize="16sp" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/breeding"
+                    android:theme="@style/orangeCheckBoxStyle" />
+
+            </GridLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/dark_gray" />
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:columnCount="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_gravity="center|start"
+                    android:text="Dog filters"
+                    android:textColor="@color/primary_green"
+                    android:textSize="16sp" />
+
+                <ImageButton
+                    android:id="@+id/expand_dogs_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:adjustViewBounds="true"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/down_icon_green" />
+
+            </GridLayout>
+
+            <LinearLayout
+                android:id="@+id/expandable_dogs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:chipSpacingHorizontal="20dp">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/male"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="male"
+                        android:textColor="@color/dark_gray"
+                        app:checkedIconTint="@color/dark_gray"
+                        app:chipBackgroundColor="#F8F2E2" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/female"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="female"
+                        android:textColor="@color/dark_gray"
+                        app:checkedIconTint="@color/dark_gray"
+                        app:chipBackgroundColor="#F8F2E2" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/birthdayInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    app:boxBackgroundColor="@color/background"
+                    app:endIconDrawable="@drawable/date_picker"
+                    app:endIconMode="custom"
+                    app:errorEnabled="true">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/birthday"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="birthday"
+                        android:inputType="date"
+                        android:padding="13dp"
+                        android:textSize="14sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:columnCount="2">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Castration"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="16sp" />
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/castration"
+                        android:theme="@style/orangeCheckBoxStyle" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:paddingLeft="10dp"
+                        android:text="Ready to mate"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="16sp" />
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/ready_to_mate"
+                        android:theme="@style/orangeCheckBoxStyle" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_columnWeight="1"
+                        android:paddingLeft="10dp"
+                        android:text="For sale"
+                        android:textColor="@color/dark_gray"
+                        android:textSize="16sp" />
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/for_sale"
+                        android:theme="@style/orangeCheckBoxStyle" />
+
+                </GridLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/breedInputLayout"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="10dp"
+                    app:boxBackgroundColor="@color/background"
+                    app:errorEnabled="true">
+
+                    <!-- android:dropDownAnchor="@id/layout_above" -->
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/autoCompleteBreed"
+                        style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="breed"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:padding="13dp"
+                        android:textSize="14sp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/breed_chips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:chipSpacingHorizontal="20dp">
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -260,6 +260,7 @@
                     android:focusableInTouchMode="true"
                     android:maxEms="2"
                     android:minEms="2"
+                    android:imeOptions="actionDone"
                     android:cursorVisible="false"/>
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/background"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="0dp"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/guideline5"
+        app:layout_constraintStart_toStartOf="@+id/guideline4"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/photo"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/nameInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            app:boxBackgroundColor="@color/background"
+            app:errorEnabled="true"
+            app:counterEnabled="true"
+            app:counterMaxLength="15"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="13dp"
+                android:inputType="textPersonName"
+                android:maxLength="15"
+                android:maxLines="1"
+                android:imeOptions="actionNext"
+                android:textSize="14sp"
+                android:hint="name"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/breedInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:boxBackgroundColor="@color/background"
+            app:errorEnabled="true"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                android:id="@+id/autoCompleteBreed"
+                style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"        android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="13dp"
+                android:inputType="textPersonName"
+                android:maxLines="1"
+                android:textSize="14sp"
+                android:imeOptions="actionNext"
+                android:hint="breed"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/birthdayInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:boxBackgroundColor="@color/background"
+            app:errorEnabled="true"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/date_picker"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editBirthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="13dp"
+                android:inputType="date"
+                android:maxLength="15"
+                android:maxLines="1"
+                android:textSize="14sp"
+                android:hint="birthday" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_marginVertical="20dp"
+            android:layout_marginHorizontal="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <RadioButton
+                android:id="@+id/male"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="30dp"
+                android:text="male"
+                android:button="@android:color/transparent"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="@drawable/radio_selector"
+                android:textColor="@drawable/radio_text_color"
+                android:padding="5dp"/>
+
+            <RadioButton
+                android:id="@+id/female"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:background="@drawable/radio_selector"
+                android:textColor="@drawable/radio_text_color"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="female"
+                android:button="@android:color/transparent"
+                android:padding="5dp"/>
+
+        </RadioGroup>
+
+        <GridLayout
+            android:layout_marginHorizontal="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2">
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Castration"
+                android:textColor="@color/dark_gray"
+                android:layout_columnWeight="1"/>
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:layout_marginTop="5dp"
+                android:id="@+id/castration_check"
+                android:theme="@style/checkBoxStyle" />
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ready to mate"
+                android:textColor="@color/dark_gray"
+                android:layout_columnWeight="1"/>
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:layout_marginTop="5dp"
+                android:id="@+id/ready_to_mate_check"
+                android:theme="@style/checkBoxStyle"/>
+
+            <TextView
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="For sale"
+                android:textColor="@color/dark_gray"
+                android:layout_columnWeight="1"/>
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:layout_marginTop="5dp"
+                android:id="@+id/for_sale_check"
+                android:theme="@style/checkBoxStyle"/>
+
+        </GridLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginVertical="20dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <TextView
+                android:id="@+id/delete"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:textColor="@color/secondary_orange" />
+
+            <TextView
+                android:layout_marginStart="50dp"
+                android:id="@+id/save"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:textColor="@color/secondary_orange" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

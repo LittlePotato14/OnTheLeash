@@ -21,4 +21,26 @@
         <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
         <item name="android:windowExitAnimation">@android:anim/fade_out</item>
     </style>
+
+    <style name="checkBoxStyle" parent="Base.Theme.AppCompat">
+        <item name="colorAccent">@color/primary_green</item>
+        <item name="android:textColorSecondary">@color/dark_gray</item>
+    </style>
+
+    <style name="orangeCheckBoxStyle" parent="Base.Theme.AppCompat">
+        <item name="colorAccent">@color/secondary_orange</item>
+        <item name="android:textColorSecondary">@color/dark_gray</item>
+    </style>
+
+    <style name="Widget.AppTheme.MaterialDatePicker" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
+        <item name="materialCalendarHeaderToggleButton">@style/Widget.AppTheme.MaterialCalendar.HeaderToggleButton</item>
+    </style>
+
+    <style name="Widget.AppTheme.MaterialCalendar.HeaderToggleButton" parent="Widget.MaterialComponents.MaterialCalendar.HeaderToggleButton">
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="AppSearchView" parent="Widget.AppCompat.SearchView" >
+        <item name="android:textSize">13sp</item>
+    </style>
 </resources>

@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.ontheleash.R;
 import com.example.ontheleash.Settings;
 import com.example.ontheleash.api.ApiClient;
-import com.example.ontheleash.api.RegistrationLoginRequest;
+import com.example.ontheleash.api.Credentials;
 import com.example.ontheleash.api.JwtResponse;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -93,7 +93,7 @@ public class SignUpActivity extends AppCompatActivity {
         // send login request
         ApiClient.getInstance()
                 .getApi()
-                .registration(new RegistrationLoginRequest(email, password))
+                .registration(new Credentials(email, password))
                 .enqueue(new Callback<JwtResponse>() {
                     @Override
                     public void onResponse(@NonNull Call<JwtResponse> call, @NonNull Response<JwtResponse> response) {
@@ -111,6 +111,7 @@ public class SignUpActivity extends AppCompatActivity {
                             editor.apply();
 
                             forward.setImageResource(R.drawable.forward_icon_green);
+                            forward.setEnabled(true);
 
                             // open confirmation code activity
                             Intent intent = new Intent(SignUpActivity.this, ConfirmationCodeActivity.class);
@@ -161,7 +162,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         if(!password.equals(confirmPassword)){
-            passwordInput.setError("");
+            passwordInput.setError("Password does not match");
             confirmPasswordInput.setError("Password does not match");
             return false;
         }
