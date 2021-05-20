@@ -6,4 +6,5 @@ $config_db = "***";
 $mail_username = "***";
 $mail_password = "***";
 $mail_from = "***";
+$base_url = "https://na-povodke.ru";
 ?>

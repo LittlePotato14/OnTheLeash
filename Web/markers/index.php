@@ -2,14 +2,17 @@
 require("../general_files/config.php");
 
 switch ($_SERVER['REQUEST_METHOD']) {
-    case 'POST':
-        require("create.php");
-        break;
-	case 'DELETE':
-		require("delete.php");
-		break;
 	case 'GET':
-		require("get.php");
+		// getting query
+		$data = $_GET;
+		
+		if(isset($data["id"])){
+			require("get_marker.php");
+		}
+		else{
+			require("get_all_markers.php");
+		}
+		
 		break;
 }
 

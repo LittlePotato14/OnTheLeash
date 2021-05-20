@@ -3,7 +3,8 @@ URL                                      DESCRIPTION                            
 POST users/                              user registration                                No
 GET users?:id/                           @id user info                                    No
 GET users/                               user info                                        Yes
-PUT users/                               update user info                                 Yes
+POST users/update                        update user info                                 Yes
+PUT users/                          	 update credentials                               Yes
 DELETE users/                            delete user                                      Yes
 PUT users/new_password                   send new password via email                      No
 
@@ -16,5 +17,10 @@ POST confirmation_code/                  resends confirmation code              
 
 POST dogs/                               dog creation                                     Yes
 GET dogs?:id/                            get dog info                                     No
-PUT dogs?:id/                            update dog info                                  Yes
+POST dogs/update?:id                     update dog info                                  Yes
 DELETE dogs?:id/                         delete dog                                       Yes
+
+GET breeds                               return list of all breeds                        No                
+
+GET markers                              return list of all markers                       No                
+GET markers?:id                          return id marker info                            No                

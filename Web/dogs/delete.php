@@ -1,5 +1,5 @@
 <?
-// REQUEST: ВУДУЕУ
+// REQUEST: DELETE
 // Headers {jwt:string}
 // Query {id: int}
 //

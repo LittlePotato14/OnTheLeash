@@ -12,7 +12,20 @@ switch ($_SERVER['REQUEST_METHOD']) {
 		require("get.php");
 		break;
 	case 'PUT':
-		require("update.php");
+		// getting request body
+		$postData = file_get_contents('php://input');
+		$data = json_decode($postData, true);
+
+		if(isset($data["email"])){
+			require("update_email.php");
+		}
+		if(isset($data["password"])){
+			require("update_password.php");
+		}
+		if(isset($data["latitude"]) && isset($data["longitude"])){
+			require("update_location.php");
+		}
+		
 		break;
 }
 

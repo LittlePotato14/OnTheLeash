@@ -35,4 +35,20 @@ else{
 
 // closing statement
 mysqli_stmt_close ($stmt);
+
+// delete dogs
+// preparing db request
+$stmt = mysqli_prepare($link, "DELETE FROM dogs WHERE user_id = ?");
+mysqli_stmt_bind_param($stmt, 'd', $jwt_payload["user_id"]);
+
+// executing db request
+if(mysqli_stmt_execute($stmt));
+else{
+	echo var_dump(mysqli_stmt_error($stmt));
+	http_response_code(500);
+	exit();
+}
+
+// closing statement
+mysqli_stmt_close ($stmt);
 ?>

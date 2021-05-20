@@ -1,0 +1,11 @@
+php_value error_log /home/a0116740/domains/na-povodke.ru/logs/errors.log
+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+#Remove PHP extension from named files
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(sessions/others|users/new_password|users/update|dogs/update)$ $1.php [L,NC]

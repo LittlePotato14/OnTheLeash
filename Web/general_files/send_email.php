@@ -7,7 +7,7 @@ function sendEmail($email, $subject, $body){
 	require '../source/PHPMailer/Exception.php';
 	require '../source/PHPMailer/PHPMailer.php';
 	require '../source/PHPMailer/SMTP.php';
-	require_once ("passwords.php");
+	require ("../general_files/passwords.php");
 
 	$mail = new PHPMailer();
 	$mail->isSMTP();
@@ -25,6 +25,10 @@ function sendEmail($email, $subject, $body){
 	$mail->Subject = $subject;
 	$mail->Body = $body;
 	$mail->isHTML(true);
-	$mail->send();
+	
+	//send the message, check for errors
+	if (!$mail->send()) {
+		 file_put_contents("mail_error.txt", 'Mailer Error: ' . $mail->ErrorInfo);
+	}
 }
 ?>

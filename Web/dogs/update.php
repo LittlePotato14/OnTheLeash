@@ -3,6 +3,7 @@
 // Headers {jwt: string}
 // Query {id: int}
 // Body json {"name": string, "sex": int(0 - male, 1 - female), "birtday": string(yyyy-mm-dd), "breed": string, "castration": bool, "ready_to_mate": bool, "for_sale": bool}
+// File "image"
 //
 // ERRORS:
 // 400:
@@ -24,17 +25,15 @@
 // 500:
 // server error;
 
+require("../general_files/config.php");
+require("../general_files/generate_random_string.php");
 require("../general_files/check_jwt.php");
-
-defined('APP_RAN') or die();
 
 // check jwt
 $jwt_check = checkJwt($link);
 $jwt_payload = $jwt_check["jwt_payload"];
 
-// getting request body
-$postData = file_get_contents('php://input');
-$data = json_decode($postData, true);
+$data = json_decode($_POST["dog"], true);
 
 // getting query
 if(!isset($_GET["id"])){
@@ -48,7 +47,7 @@ $dog_id = $_GET["id"];
 
 // get dog
 // preparing db request
-$stmt = mysqli_prepare($link, "SELECT user_id, name, sex, birthday, breed, castration, ready_to_mate, for_sale FROM dogs WHERE id = ?");
+$stmt = mysqli_prepare($link, "SELECT user_id, name, sex, birthday, breed, castration, ready_to_mate, for_sale, image FROM dogs WHERE id = ?");
 mysqli_stmt_bind_param($stmt, 'd', $dog_id);
 
 // executing db request
@@ -69,7 +68,7 @@ if(mysqli_stmt_num_rows($stmt) != 1){
 }
 
 // associating result columns with variables
-mysqli_stmt_bind_result ($stmt, $user_id, $name, $sex, $birthday, $breed, $castration, $ready_to_mate, $for_sale);
+mysqli_stmt_bind_result ($stmt, $user_id, $name, $sex, $birthday, $breed, $castration, $ready_to_mate, $for_sale, $image);
 
 // getting dog
 mysqli_stmt_fetch ($stmt); 
@@ -119,11 +118,37 @@ if(isset($data["for_sale"])){
 	$for_sale = $data["for_sale"];
 }
 
+// work with image
+// ----------------------------------------------------------------------------------------------
+if($_FILES["image"]["size"] > 0){
+	$uploaddir = '../images/dogs/';
+	$path_parts = pathinfo($_FILES["image"]["name"]);
+
+	if ($_FILES["image"]["type"] == "image/*"){
+		$image = $uploaddir . generateRandomString($length = 20) . "." . $path_parts['extension'];
+			
+	   if ($_FILES["image"]["error"] > 0){
+			echo "Return Code: " . $_FILES["image"]["error"];
+		   	http_response_code(500);
+			exit();
+	   }
+	   else{
+		   move_uploaded_file($_FILES["image"]["tmp_name"], $image);
+	   }
+	}
+}
+
+if(isset($data["delete_photo"]) && $data["delete_photo"] == 1){
+	$image = "";
+}
+
+// ToDo remove previous image ----------------------------------------------------------------------------
+
 
 // set dog
 // preparing db request
-$stmt = mysqli_prepare($link, "UPDATE dogs SET name = ?, sex = ?, birthday = ?, breed = ?, castration = ?, ready_to_mate = ?, for_sale = ? WHERE id = ?");
-mysqli_stmt_bind_param($stmt, 'sdssdddd', $name, $sex, $birthday, $breed, $castration, $ready_to_mate, $for_sale, $dog_id);
+$stmt = mysqli_prepare($link, "UPDATE dogs SET name = ?, sex = ?, birthday = ?, breed = ?, castration = ?, ready_to_mate = ?, for_sale = ?, image = ? WHERE id = ?");
+mysqli_stmt_bind_param($stmt, 'sdssdddsd', $name, $sex, $birthday, $breed, $castration, $ready_to_mate, $for_sale, $image, $dog_id);
 
 // executing db request
 if(mysqli_stmt_execute($stmt));

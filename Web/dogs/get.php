@@ -3,7 +3,7 @@
 // Query {id: int?}
 //
 // RETURN:
-// json {"name": string, "sex": int(0 - male, 1 - female), "birtday": string(yyyy-mm-dd), "breed": string, "castration": bool, "ready_to_mate": bool, "for_sale": bool}
+// json {"id": int, "name": string, "sex": int(0 - male, 1 - female), "birtday": string(yyyy-mm-dd), "breed": string, "castration": bool, "ready_to_mate": bool, "for_sale": bool, "image": string}
 //
 // ERRORS:
 // 400:
@@ -16,6 +16,7 @@
 // server error;
 
 defined('APP_RAN') or die();
+require("../general_files/passwords.php");
 
 // getting query
 $data = $_GET;
@@ -28,7 +29,7 @@ if(!isset($data["id"])){
 
 // get dog from db
 // preparing db request
-$stmt = mysqli_prepare($link, "SELECT name, sex, birthday, breed, castration, ready_to_mate, for_sale FROM dogs WHERE id = ?");
+$stmt = mysqli_prepare($link, "SELECT name, sex, birthday, breed, castration, ready_to_mate, for_sale, image FROM dogs WHERE id = ?");
 mysqli_stmt_bind_param($stmt, 'd', $data["id"]);
 
 // executing db request
@@ -49,7 +50,7 @@ if(mysqli_stmt_num_rows($stmt) != 1){
 }
 
 // associating result columns with variables
-mysqli_stmt_bind_result ($stmt , $name, $sex, $birthday, $breed, $castration, $ready_to_mate, $for_sale);
+mysqli_stmt_bind_result ($stmt , $name, $sex, $birthday, $breed, $castration, $ready_to_mate, $for_sale, $image);
 
 // getting dog info
 mysqli_stmt_fetch ($stmt); 
@@ -59,5 +60,5 @@ mysqli_stmt_close ($stmt);
 
 
 // response json
-echo json_encode(["name"=> $name, "sex"=> $sex, "birthday"=> $birthday, "breed"=> $breed, "castration"=> $castration, "ready_to_mate"=> $ready_to_mate, "for_sale"=> $for_sale]);
+echo json_encode(["id"=>$data["id"], "name"=> $name, "sex"=> $sex, "birthday"=> $birthday, "breed"=> $breed, "castration"=> $castration, "ready_to_mate"=> $ready_to_mate, "for_sale"=> $for_sale, "image"=>$base_url . "/" . $image]);
 ?>
